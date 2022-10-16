@@ -3,7 +3,7 @@ import { validationResult } from "express-validator/src/validation-result";
 
 import { RequestValidationError } from "../errors/request-validation-error";
 
-const signup = (req: Request, res: Response, next: NextFunction) => {
+const signup = (req: Request, res: Response, next: NextFunction): void => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -18,7 +18,7 @@ const signup = (req: Request, res: Response, next: NextFunction) => {
 
 };
 
-const signin = (req: Request, res: Response, next: NextFunction) => {
+const signin = (req: Request, res: Response, next: NextFunction): void => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {

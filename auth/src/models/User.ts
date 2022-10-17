@@ -1,6 +1,8 @@
 import { Schema, model, Model, Document } from "mongoose";
 import uniqueValidator from "mongoose-unique-validator";
 
+import { Password } from "../services/password";
+
 // an interface that describe properties
 // that are required to create new user
 interface IUser {
@@ -37,6 +39,14 @@ const userSchema = new Schema<UserDoc, UserModel>({
 
 // to unique fields
 userSchema.plugin(uniqueValidator);
+
+userSchema.pre("save", async function (done) {
+    if (this.isModified("password")) {
+        const hashed = await Password.toHash(this.get("password"));
+        this.set("password", hashed);
+    }
+    done();
+});
 
 // to create object from the model
 userSchema.statics.build = (attrs: IUser): IUser => {

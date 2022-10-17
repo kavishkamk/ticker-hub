@@ -1,10 +1,10 @@
 import express from "express";
 import { json } from "body-parser";
+import mongoose from "mongoose";
 
 import usersRouter from "./routes/users-route";
 import errorMiddleware from "./middleware/error-middleware";
 import unhandledRouteMiddleWare from "./middleware/unhandled-route-middleware";
-import mongoose from "mongoose";
 
 const app = express();
 

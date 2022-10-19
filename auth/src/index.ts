@@ -1,6 +1,7 @@
 import express from "express";
 import { json } from "body-parser";
 import mongoose from "mongoose";
+import cookieSession from "cookie-session";
 
 import usersRouter from "./routes/users-route";
 import errorMiddleware from "./middleware/error-middleware";
@@ -10,7 +11,13 @@ const app = express();
 
 const port = 4000;
 
+app.set("trust proxy", true);
+
 app.use(json());
+app.use(cookieSession({
+    signed: false,
+    secure: true
+}));
 
 app.use("/api/users", usersRouter);
 

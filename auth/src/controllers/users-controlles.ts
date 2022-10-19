@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { validationResult } from "express-validator/src/validation-result";
+import jwt from "jsonwebtoken";
 
 import { RequestValidationError } from "../errors/request-validation-error";
 import { User } from "../models/User";
@@ -17,7 +18,7 @@ const signup = async (req: Request, res: Response, next: NextFunction): Promise<
     let existingUser;
 
     try {
-        existingUser = await User.findOne({ email });
+        existingUser = await User.findOne({ email }).exec();
     } catch (err) {
         return next(new CommonError(500, "Fail, Signup fail during exsisting user checking"));
     }
@@ -39,7 +40,16 @@ const signup = async (req: Request, res: Response, next: NextFunction): Promise<
         return next(new CommonError(500, "Fail, Signup fail during user creation"));
     }
 
-    res.status(200).send({ user: createdUser });
+    var userJwt = jwt.sign({
+        id: createdUser.id,
+        email: createdUser.email
+    }, "dkjdeiHUp");
+
+    req.session = {
+        jwt: userJwt
+    };
+
+    res.status(200).send({ user: createdUser.toObject({ getters: true }) });
 
 };
 

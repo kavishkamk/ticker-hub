@@ -1,5 +1,16 @@
 ## This is a application based on Micro Services Architecture
 
+### Setup secrets
+
+- Add JWT key as a secret in kubernete cluster
+     - replace ["Value"] with JWT_KEY
+```
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=["Value"]
+```
+
+
+### Project Details
+
 - Micro Service Architecture
 - Based on TypeScript, Node.js, Express, mongoDB
 - Docker for impliment services ([ Docker Desktop](https://www.docker.com/products/docker-desktop/) on Windows 11)
@@ -10,6 +21,8 @@
 - use [ dockerhub ](https://hub.docker.com/) to handle images
 - use [mongo](https://hub.docker.com/_/mongo) image from [docker hub]((https://hub.docker.com/search?q=)) to impliment mongodb
 - [ Skaffold ](https://skaffold.dev/) for automate development process [ (./skaffold.yaml) ](https://github.com/kavishkamk/ticket-hub/blob/main/skaffold.yaml)
+- Distribute Credentials Securely Using Secrets in kubernetes cluster 
+    - kubectl create secret generic ["Secret Name"] --from-literal=["Key Name"]=["Key Value"]
 
 ## Services
 

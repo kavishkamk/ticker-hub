@@ -6,6 +6,7 @@ import cookieSession from "cookie-session";
 import usersRouter from "./routes/users-route";
 import errorMiddleware from "./middleware/error-middleware";
 import unhandledRouteMiddleWare from "./middleware/unhandled-route-middleware";
+import { CommonError } from "./errors/common-error";
 
 const app = express();
 
@@ -28,6 +29,12 @@ app.use(unhandledRouteMiddleWare);
 app.use(errorMiddleware);
 
 const start = async () => {
+
+    if (!process.env.JWT_KEY) {
+        console.error("JWT_KEY must be defined");
+        throw new CommonError(404, "JWT_KEY must be defined");
+    }
+
     try {
         await mongoose.connect("mongodb://auth-mongo-srv:27017/auth");
         console.log("Connected to the database");

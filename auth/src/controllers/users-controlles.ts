@@ -43,13 +43,13 @@ const signup = async (req: Request, res: Response, next: NextFunction): Promise<
     var userJwt = jwt.sign({
         id: createdUser.id,
         email: createdUser.email
-    }, "dkjdeiHUp");
+    }, process.env.JWT_KEY!);
 
     req.session = {
         jwt: userJwt
     };
 
-    res.status(200).send({ user: createdUser.toObject({ getters: true }) });
+    res.status(200).send({ id: createdUser.id, email: createdUser.email });
 
 };
 

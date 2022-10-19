@@ -1,17 +1,11 @@
 import { Request, Response, NextFunction } from "express";
-import { validationResult } from "express-validator/src/validation-result";
 import jwt from "jsonwebtoken";
 
-import { RequestValidationError } from "../errors/request-validation-error";
 import { User } from "../models/User";
 import { CommonError } from "../errors/common-error";
+import { Password } from "../services/password";
 
 const signup = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        return next(new RequestValidationError(400, errors.array()));
-    }
 
     const { email, password } = req.body;
 
@@ -53,14 +47,38 @@ const signup = async (req: Request, res: Response, next: NextFunction): Promise<
 
 };
 
-const signin = (req: Request, res: Response, next: NextFunction): void => {
-    const errors = validationResult(req);
+const signin = async (req: Request, res: Response, next: NextFunction) => {
 
-    if (!errors.isEmpty()) {
-        return next(new RequestValidationError(400, errors.array()));
+    const { email, password } = req.body;
+
+    let user;
+
+    try {
+        user = await User.findOne({ email }).exec();
+    } catch (err) {
+        return next(new CommonError(500, "Fail, Signin fail during user details searching"));
     }
 
-    res.status(200).send({});
+    if (!user) {
+        return next(new CommonError(401, "SignIn fail. Invalid credentials"));
+    }
+
+    const passwordMatch = await Password.compare(user.password, password);
+
+    if (!passwordMatch) {
+        return next(new CommonError(401, "SignIn fail, Invalid credentials"));
+    }
+
+    const userJwt = jwt.sign({
+        id: user.id,
+        email: user.email
+    }, process.env.JWT_KEY!);
+
+    req.session = {
+        jwt: userJwt
+    }
+
+    res.status(200).send({ id: user.id, email: user.email });
 };
 
 const signout = (req: Request, res: Response, next: NextFunction): void => {

@@ -2,7 +2,7 @@
 
 - This is a micro service
 - Service created with Node.js, Express, TypeScript
-- Signin, Signup, Signout, get current user
+- Signin, Signup, Signout, check current user logged in or not
 - Error handling
 - Build [ Dockerfile](https://github.com/kavishkamk/ticket-hub/blob/main/auth/Dockerfile) for build docker image
 - mongoDB connection with [mongoose](https://mongoosejs.com/)

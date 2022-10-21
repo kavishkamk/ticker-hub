@@ -1,14 +1,16 @@
 import express from "express";
 import { body } from "express-validator";
 
-import { signup, signin, signout, getCurrentUsers } from "../controllers/users-controlles";
+import { signup, signin, signout, currentUsers } from "../controllers/users-controlles";
 import validateRequest from "../middleware/validate-request";
+import currentUserMiddleware from "../middleware/current-user";
 
 const router = express.Router();
 
 router.get(
     "/currentuser",
-    getCurrentUsers
+    currentUserMiddleware,
+    currentUsers
 );
 
 router.post(

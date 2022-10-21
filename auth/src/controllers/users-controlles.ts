@@ -83,9 +83,15 @@ const signin = async (req: Request, res: Response, next: NextFunction) => {
 
 const signout = (req: Request, res: Response, next: NextFunction): void => {
 
+    req.session = null;
+
+    res.status(200).send({});
+
 };
 
-const getCurrentUsers = (req: Request, res: Response, next: NextFunction): void => {
+const currentUsers = (req: Request, res: Response, next: NextFunction) => {
+
+    res.send({ currentUser: req.currentUser || null });
 
 };
 
@@ -93,5 +99,5 @@ export {
     signup,
     signin,
     signout,
-    getCurrentUsers
+    currentUsers
 };

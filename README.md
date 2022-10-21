@@ -26,10 +26,22 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=["Value"]
 
 ## Services
 
-### auth
+### [auth](https://github.com/kavishkamk/ticket-hub/blob/main/auth/README.md)
 
 - Autentication and Autherization ([auth service](https://github.com/kavishkamk/ticket-hub/tree/main/auth))
 - auth deploymnet ([./infra/k8s/auth-depl.yaml](https://github.com/kavishkamk/ticket-hub/blob/main/infra/k8s/auth-depl.yaml))
+- Service created with Node.js, Express, TypeScript
+- Signin, Signup, Signout, check current user logged in or not
+- Error handling
+- Build [ Dockerfile](https://github.com/kavishkamk/ticket-hub/blob/main/auth/Dockerfile) for build docker image
+- mongoDB connection with [mongoose](https://mongoosejs.com/)
+- Password hasing
+- Issue JWT through cookies ([jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken))
+- Handled unhandled routes
+- Backend validation
+- Use environment variables store in [kubernetes Secrets](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/)
+- Deployment file of Auth Service ([.infra/k8s/auth-depl.yaml](https://github.com/kavishkamk/ticket-hub/blob/main/infra/k8s/auth-depl.yaml))
+- Testing with jest, ts-jest, supertest and mongodb-memory-server
 
 ### auth-mongo
 

@@ -5,7 +5,7 @@ import { User } from "../models/User";
 import { CommonError } from "../errors/common-error";
 import { Password } from "../services/password";
 
-const signup = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const signup = async (req: Request, res: Response, next: NextFunction) => {
 
     const { email, password } = req.body;
 

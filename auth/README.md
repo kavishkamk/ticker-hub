@@ -1,6 +1,7 @@
 ## This is a Auth Service API
 
 - This is a micro service
+- auth deploymnet ([./infra/k8s/auth-depl.yaml](https://github.com/kavishkamk/ticket-hub/blob/main/infra/k8s/auth-depl.yaml))
 - Service created with Node.js, Express, TypeScript
 - Signin, Signup, Signout, check current user logged in or not
 - Error handling
@@ -12,6 +13,7 @@
 - Backend validation
 - Use environment variables store in [kubernetes Secrets](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/)
 - Deployment file of Auth Service ([.infra/k8s/auth-depl.yaml](https://github.com/kavishkamk/ticket-hub/blob/main/infra/k8s/auth-depl.yaml))
+- Testing with jest, ts-jest, supertest and mongodb-memory-server
 
 ## used npm packages
 
@@ -23,3 +25,7 @@
 - [mongoose](https://mongoosejs.com/)
 - [mongoose-unique-validator](https://www.npmjs.com/package/mongoose-unique-validator)
 - [cookie-session](https://www.npmjs.com/package/cookie-session)
+- [jest](https://jestjs.io/)
+- [ts-jest](https://www.npmjs.com/package/ts-jest)
+- [supertest](https://www.npmjs.com/package/supertest)
+- [mongodb-memory-server](https://www.npmjs.com/package/mongodb-memory-server)

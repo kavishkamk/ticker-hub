@@ -8,7 +8,7 @@ it("return a 200 on successful signup", async () => {
             email: "test@test.com",
             password: "password"
         })
-        .expect(200);
+        .expect(201);
 });
 
 it("return a 422 with an invalid email", async () => {
@@ -54,7 +54,7 @@ it("disallow duplicate email address", async () => {
             email: "test@test.com",
             password: "password"
         })
-        .expect(200);
+        .expect(201);
 
     await request(app)
         .post("/api/users/signup")
@@ -72,7 +72,7 @@ it("set a cookies after signup", async () => {
             email: "test@test.com",
             password: "password"
         })
-        .expect(200);
+        .expect(201);
 
     expect(response.get("Set-Cookie")).toBeDefined();
 });

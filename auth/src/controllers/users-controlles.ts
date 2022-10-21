@@ -43,7 +43,7 @@ const signup = async (req: Request, res: Response, next: NextFunction) => {
         jwt: userJwt
     };
 
-    res.status(200).send({ id: createdUser.id, email: createdUser.email });
+    res.status(201).send({ id: createdUser.id, email: createdUser.email });
 
 };
 
@@ -85,7 +85,7 @@ const signout = (req: Request, res: Response, next: NextFunction): void => {
 
     req.session = null;
 
-    res.status(200).send({});
+    res.status(201).send({});
 
 };
 

@@ -47,6 +47,7 @@ web_modules/
 
 # TypeScript cache
 *.tsbuildinfo
+next-env.d.ts
 
 # Optional npm cache directory
 .npm
@@ -86,6 +87,13 @@ web_modules/
 # Next.js build output
 .next
 out
+/.next/
+/out/
+
+.DS_Store
+*.pem
+
+.vercel
 
 # Nuxt.js build / generate output
 .nuxt
@@ -131,3 +139,8 @@ dist
 
 ## project spesific secrets
 keys.txt
+
+# for next.js
+
+/.pnp
+.pnp.js

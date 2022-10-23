@@ -29,6 +29,7 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=["Value"]
 ### [auth](https://github.com/kavishkamk/ticket-hub/blob/main/auth/README.md)
 
 - Autentication and Autherization ([auth service](https://github.com/kavishkamk/ticket-hub/tree/main/auth))
+- This is RESTfull API, used MVC architecture
 - auth deploymnet ([./infra/k8s/auth-depl.yaml](https://github.com/kavishkamk/ticket-hub/blob/main/infra/k8s/auth-depl.yaml))
 - Service created with Node.js, Express, TypeScript
 - Signin, Signup, Signout, check current user logged in or not

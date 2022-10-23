@@ -1,6 +1,7 @@
 ## This is a Auth Service API
 
 - This is a micro service
+- This is RESTfull API, used MVC architecture
 - auth deploymnet ([./infra/k8s/auth-depl.yaml](https://github.com/kavishkamk/ticket-hub/blob/main/infra/k8s/auth-depl.yaml))
 - Service created with Node.js, Express, TypeScript
 - Signin, Signup, Signout, check current user logged in or not

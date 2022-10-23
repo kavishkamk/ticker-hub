@@ -46,3 +46,14 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=["Value"]
 ### auth-mongo
 
 - use [mongo](https://hub.docker.com/_/mongo) image from [dockerhub](https://hub.docker.com/search?q=) to deploy [auth-mongo](https://github.com/kavishkamk/ticket-hub/blob/main/infra/k8s/auth-mongo-depl.yaml) service
+
+### client
+
+- This is front end application of Ticket-hub created with [Next.js](https://nextjs.org/)
+- This developed as a micro service
+- Server side rendering with Next.js
+- auth deploymnet ([./infra/k8s/client-depl.yaml](https://github.com/kavishkamk/ticket-hub/blob/main/infra/k8s/client-depl.yaml))
+- used [Bootstrap](https://getbootstrap.com/), [tailwind.css](https://tailwindcss.com/) framworks
+- [Axios](https://www.npmjs.com/package/axios) for requests
+- Fetch data in Server Side Rendering (through ingress-nginx)
+- Cross Namespace Service communication (with ingress-nginx)

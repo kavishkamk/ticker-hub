@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import { CommonError } from "@tickethub-kv/common";
 
 import { User } from "../models/User";
-import { CommonError } from "../errors/common-error";
 import { Password } from "../services/password";
 
 const signup = async (req: Request, res: Response, next: NextFunction) => {

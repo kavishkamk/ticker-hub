@@ -1,10 +1,8 @@
 import express from "express";
 import { body } from "express-validator";
+import { validateRequest, currentUserMiddleware } from "@tickethub-kv/common"
 
 import { signup, signin, signout, currentUsers } from "../controllers/users-controlles";
-import validateRequest from "../middleware/validate-request";
-import currentUserMiddleware from "../middleware/current-user";
-
 const router = express.Router();
 
 router.get(

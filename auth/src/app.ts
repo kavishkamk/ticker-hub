@@ -1,10 +1,9 @@
 import express from "express";
 import { json } from "body-parser";
 import cookieSession from "cookie-session";
+import { errorMiddleware, unhandledRouteMiddleWare } from "@tickethub-kv/common";
 
 import usersRouter from "./routes/users-route";
-import errorMiddleware from "./middleware/error-middleware";
-import unhandledRouteMiddleWare from "./middleware/unhandled-route-middleware";
 
 const app = express();
 

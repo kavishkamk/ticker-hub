@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import { CommonError } from "./errors/common-error";
+import { CommonError } from "@tickethub-kv/common";
+
 import { app } from "./app";
 
 const port = 4000;

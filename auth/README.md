@@ -15,6 +15,10 @@
 - Use environment variables store in [kubernetes Secrets](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/)
 - Deployment file of Auth Service ([.infra/k8s/auth-depl.yaml](https://github.com/kavishkamk/ticket-hub/blob/main/infra/k8s/auth-depl.yaml))
 - Testing with jest, ts-jest, supertest and mongodb-memory-server
+- use shared library ([@tickethub-kv/common](https://www.npmjs.com/package/@tickethub-kv/common))
+
+## project spesific shared library
+- [@tickethub-kv/common](https://www.npmjs.com/package/@tickethub-kv/common)
 
 ## used npm packages
 

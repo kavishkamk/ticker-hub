@@ -21,8 +21,33 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=["Value"]
 - use [ dockerhub ](https://hub.docker.com/) to handle images
 - use [mongo](https://hub.docker.com/_/mongo) image from [docker hub]((https://hub.docker.com/search?q=)) to impliment mongodb
 - [ Skaffold ](https://skaffold.dev/) for automate development process [ (./skaffold.yaml) ](https://github.com/kavishkamk/ticket-hub/blob/main/skaffold.yaml)
+- create and publish shared library ([@tickethub-kv/common](https://www.npmjs.com/package/@tickethub-kv/common))
+    ```
+    yarn add @tickethub-kv/common
+    ```
 - Distribute Credentials Securely Using Secrets in kubernetes cluster 
-    - kubectl create secret generic ["Secret Name"] --from-literal=["Key Name"]=["Key Value"]
+    ```
+    kubectl create secret generic ["Secret Name"] --from-literal=["Key Name"]=["Key Value"]
+    ```
+
+##  Shared library
+
+### [common](https://github.com/kavishkamk/ticket-hub/tree/main/common)
+
+- install with npm
+```
+    npm install @tickethub-kv/common
+```
+
+- install with yarn
+```
+    yarn add @tickethub-kv/common
+```
+
+- This library contain common code for services
+- published as node_module ([@tickethub-kv/common](https://www.npmjs.com/package/@tickethub-kv/common))
+- Created with JavaScript and TypeScript
+- Type Script declaretion enabled
 
 ## Services
 
@@ -43,6 +68,7 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=["Value"]
 - Use environment variables store in [kubernetes Secrets](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/)
 - Deployment file of Auth Service ([.infra/k8s/auth-depl.yaml](https://github.com/kavishkamk/ticket-hub/blob/main/infra/k8s/auth-depl.yaml))
 - Testing with jest, ts-jest, supertest and mongodb-memory-server
+- use shared library ([@tickethub-kv/common](https://www.npmjs.com/package/@tickethub-kv/common))
 
 ### auth-mongo
 

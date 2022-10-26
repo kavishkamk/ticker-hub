@@ -55,7 +55,7 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=["Value"]
 
 - Autentication and Autherization ([auth service](https://github.com/kavishkamk/ticket-hub/tree/main/auth))
 - This is RESTfull API, used MVC architecture
-- auth deploymnet ([./infra/k8s/auth-depl.yaml](https://github.com/kavishkamk/ticket-hub/blob/main/infra/k8s/auth-depl.yaml))
+- Deployment file of Auth Service ([.infra/k8s/auth-depl.yaml](https://github.com/kavishkamk/ticket-hub/blob/main/infra/k8s/auth-depl.yaml))
 - Service created with Node.js, Express, TypeScript
 - Signin, Signup, Signout, check current user logged in or not
 - Error handling
@@ -66,7 +66,6 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=["Value"]
 - Handled unhandled routes
 - Backend validation
 - Use environment variables store in [kubernetes Secrets](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/)
-- Deployment file of Auth Service ([.infra/k8s/auth-depl.yaml](https://github.com/kavishkamk/ticket-hub/blob/main/infra/k8s/auth-depl.yaml))
 - Testing with jest, ts-jest, supertest and mongodb-memory-server
 - use shared library ([@tickethub-kv/common](https://www.npmjs.com/package/@tickethub-kv/common))
 

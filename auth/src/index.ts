@@ -5,25 +5,27 @@ import { app } from "./app";
 
 const port = 4000;
 
-const start = async () => {
+const start = () => {
+
+    if (!process.env.MONGO_URI) {
+        throw new CommonError(404, "MONGO_URI must be defined");
+    }
 
     if (!process.env.JWT_KEY) {
-        console.error("JWT_KEY must be defined");
         throw new CommonError(404, "JWT_KEY must be defined");
     }
 
-    try {
-        await mongoose.connect("mongodb://auth-mongo-srv:27017/auth");
-        console.log("Connected to the database");
+    mongoose.connect(process.env.MONGO_URI)
+        .then(() => {
+            console.log("Connected to the database");
 
-        app.listen(port, () => {
-            console.log("server listen on port : " + port);
+            app.listen(port, () => {
+                console.log("server listen on port : " + port);
+            });
+        })
+        .catch(err => {
+            console.error("Could not connected to the database: " + err);
         });
-
-    } catch (err) {
-        console.error(err);
-    }
-
 }
 
 start();

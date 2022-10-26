@@ -15,6 +15,9 @@ spec:
       containers:
         - name: tickets
           image: kavishkamk/ticket-hub-tickets:latest
+          env:
+            - name: MONGO_URI
+              value: "mongodb://tickets-mongo-srv:27017/tickets"
 ---
 apiVersion: v1
 kind: Service
@@ -22,7 +25,7 @@ metadata:
   name: tickets-srv
 spec:
   selector:
-    name: tickets
+    app: tickets
   ports:
     - name: tickets
       protocol: TCP

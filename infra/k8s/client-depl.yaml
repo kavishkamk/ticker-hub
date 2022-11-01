@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: client
-          image: kavishkamk/ticket-hub-client:latest
+          # image: kavishkamk/ticket-hub-client:latest
+          image: us.gcr.io/ticketing-dev-367104/client
 ---
 apiVersion: v1
 kind: Service

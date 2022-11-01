@@ -17,7 +17,10 @@
   "author": "io.github.kavishkamk",
   "license": "ISC",
   "dependencies": {
+    "@tickethub-kv/common": "^1.0.3",
+    "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.14",
+    "cookie-session": "^2.0.0",
     "express": "^4.18.2",
     "mongoose": "^6.7.0",
     "ts-node-dev": "^2.0.0",

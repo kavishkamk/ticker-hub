@@ -14,10 +14,11 @@ spec:
     spec:
       containers:
         - name: auth
-          image: kavishkamk/ticket-hub-auth:latest
+          # image: kavishkamk/ticket-hub-auth:latest
+          image: us.gcr.io/ticketing-dev-367104/auth
           env:
             - name: MONGO_URI
-              value: "mongodb://auth-mongo-srv:27017/auth"
+              value: mongodb://auth-mongo-srv:27017/auth
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:

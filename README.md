@@ -1,5 +1,46 @@
 ## This is a application based on Micro Services Architecture
 
+## check the result (hosted in google cloud for 3 months)
+#### (November 2022- January 2023)
+
+### Front End check
+
+- for request the current UI (Still onging development..) \
+    [ticketing.dev](https://34.121.155.102)
+```
+    34.121.155.102
+```
+\*\*\* when error popup on the browser type the following words on the error UI and then enter (error occured because of the nginx) \*\*\*
+```
+    thisisunsafe
+```
+
+### test auth service
+- create user \
+send post request to https://34.121.155.102/api/users/signup (Content-Typse: application/json)
+```
+    {
+        "firstName": "Kv",
+        "lastName": "Madhu",
+        "email": "kv@gmail.com",
+        "password": "11111111"
+    }
+```
+
+- login \
+send post request to https://34.121.155.102/api/users/signin (Content-Typse: application/json)
+```
+    {
+        "email": "kv@gmail.com",
+        "password": "11111111"
+    }
+```
+
+- check current user \
+get request to https://34.121.155.102/api/users/currentuser
+
+- logout \
+send post request to https://34.121.155.102/api/users/signout
 ### Setup secrets
 
 - Add JWT key as a secret in kubernete cluster
@@ -21,6 +62,7 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=["Value"]
 - use [ dockerhub ](https://hub.docker.com/) to handle images
 - use [mongo](https://hub.docker.com/_/mongo) image from [docker hub]((https://hub.docker.com/search?q=)) to impliment mongodb
 - [ Skaffold ](https://skaffold.dev/) for automate development process [ (./skaffold.yaml) ](https://github.com/kavishkamk/ticket-hub/blob/main/skaffold.yaml)
+- hodted in Google Cloud (use Google Kubernetes Engine, Cloud Builder, Load balancing deployed with Ingress-Nginx)
 - create and publish shared library ([@tickethub-kv/common](https://www.npmjs.com/package/@tickethub-kv/common))
     ```
     yarn add @tickethub-kv/common

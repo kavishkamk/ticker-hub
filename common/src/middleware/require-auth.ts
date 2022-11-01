@@ -5,6 +5,8 @@ const requireAuth = (req: Request, res: Response, next: NextFunction) => {
     if (!req.currentUser) {
         return next(new CommonError(401, "Not Autherized"));
     }
+
+    next();
 }
 
 export { requireAuth };

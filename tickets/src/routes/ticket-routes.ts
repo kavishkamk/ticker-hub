@@ -2,17 +2,21 @@ import { Router } from "express";
 import { requireAuth, validateRequest } from "@tickethub-kv/common";
 import { body } from "express-validator";
 
-import { createTicket } from "../controllers/tickets-controllers";
+import { createTicket, getTicket } from "../controllers/tickets-controllers";
 
 const router = Router();
 
+router.get(
+    "/:ticketId",
+    getTicket
+);
+
 // check the signup, 
 // if the user did't signup, user can't access bellow routes
-// router.use(h);
+router.use(requireAuth);
 
 router.post(
     "/",
-    requireAuth,
     [
         body("title")
             .trim()

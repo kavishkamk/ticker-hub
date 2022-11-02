@@ -34,7 +34,7 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "@tickethub-kv/common": "^1.0.3",
+    "@tickethub-kv/common": "^1.0.5",
     "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.14",
     "@types/express-validator": "^3.0.0",

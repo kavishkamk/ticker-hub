@@ -1,7 +1,7 @@
 import express from "express";
 import { json } from "body-parser";
 import cookieSession from "cookie-session";
-import { currentUserMiddleware, errorMiddleware, unhandledRouteMiddleWare } from "@tickethub-kv/common";
+import { errorMiddleware, unhandledRouteMiddleWare } from "@tickethub-kv/common";
 
 import usersRouter from "./routes/users-route";
 

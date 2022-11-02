@@ -6,7 +6,7 @@ import { app } from "../app";
 
 declare global {
     var getCookie: () => Promise<string[]>;
-}
+};
 
 let mongod: MongoMemoryServer;
 

@@ -11,7 +11,7 @@ interface IUser {
 }
 
 // an interface that describe properties
-// that are required to create user model
+// that user model has
 interface UserModel extends Model<UserDoc> {
     build(attrs: IUser): UserDoc;
 }

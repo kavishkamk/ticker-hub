@@ -14,6 +14,7 @@ declare global {
     }
 }
 
+// extract current user details middleware
 const currentUserMiddleware = (req: Request, res: Response, next: NextFunction) => {
 
     if (!req.session?.jwt) {
@@ -26,6 +27,6 @@ const currentUserMiddleware = (req: Request, res: Response, next: NextFunction) 
     } catch (err) { }
 
     next();
-}
+};
 
 export { currentUserMiddleware };

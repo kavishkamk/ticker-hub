@@ -1,9 +1,9 @@
 import express from "express";
 import { json } from "body-parser";
 import cookieSession from "cookie-session";
-import { currentUserMiddleware } from "@tickethub-kv/common";
+import { currentUserMiddleware, errorMiddleware, requireAuth, unhandledRouteMiddleWare } from "@tickethub-kv/common";
 
-import { ticketRouter } from "./routes/ticket-routes";
+import ticketRouter from "./routes/ticket-routes";
 
 const app = express();
 
@@ -13,14 +13,17 @@ app.set('trust proxy', true);
 app.use(json());
 
 app.use(cookieSession({
-    signed: false, // disable cookes encription
+    signed: false,
     secure: process.env.NODE_ENV !== "test"
 }));
 
-// check current user
 app.use(currentUserMiddleware);
 
 app.use("/api/tickets", ticketRouter);
+
+app.use(unhandledRouteMiddleWare);
+
+app.use(errorMiddleware);
 
 
 export { app };

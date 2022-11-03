@@ -1269,10 +1269,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@tickethub-kv/common@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@tickethub-kv/common/-/common-1.0.5.tgz#16bafe7aaaf2c00db47923872cdebd5a22eaa9cd"
-  integrity sha512-j5kX/nyTO4aVzq+bW+5ryJP1Q23jD2BeuUltp0bI2DnH89Ud+zf+sgfoBJqsnXCaOKbb2hmrYWP+hnzdQE4e/g==
+"@tickethub-kv/common@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@tickethub-kv/common/-/common-1.0.6.tgz#58a35ee933c41fa04d5e54c489ed1b069eac5068"
+  integrity sha512-U6ESBW6J/hM99YW7fcTVsjzn4uQ2Tj4OwdckWWYEgO9kG5gg9hkJjmc7VOEjEf7I6FzVAlRTrQ0rVVXK7tnueQ==
   dependencies:
     "@types/cookie-session" "^2.0.44"
     "@types/express" "^4.17.14"

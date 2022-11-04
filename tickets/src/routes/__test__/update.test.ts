@@ -33,15 +33,16 @@ it("return a 401 if the user does not owne the ticket", async () => {
         .post("/api/tickets")
         .set("Cookie", global.signin())
         .send({
-            ticket: "ticket",
+            title: "ticket",
             price: 10
         });
+
 
     await request(app)
         .put(`/api/tickets/${response.body.ticket.id}`)
         .set("Cookie", global.signin())
         .send({
-            ticket: "ticket update",
+            title: "ticket update",
             price: 20
         })
         .expect(401);
@@ -54,7 +55,7 @@ it("return 422 if the user provided invalid title or price", async () => {
         .post("/api/tickets")
         .set("Cookie", cookie)
         .send({
-            ticket: "ticket",
+            title: "ticket",
             price: 10
         });
 
@@ -85,7 +86,7 @@ it("update tickets for valid input", async () => {
         .post("/api/tickets")
         .set("Cookie", cookie)
         .send({
-            ticket: "ticket",
+            title: "ticket",
             price: 10
         });
 

@@ -51,11 +51,11 @@ const getTicket = async (req: Request, res: Response, next: NextFunction) => {
         return next(new CommonError(404, "Not found"));
     };
 
-    res.status(200).json({ ticket: ticket.toObject({ getters: true }) });
+    res.status(200).send({ ticket: ticket.toObject({ getters: true }) });
 };
 
 const updateTicket = async (req: Request, res: Response, next: NextFunction) => {
-    const ticket = await Ticket.findById(req.params.id);
+    const ticket = await Ticket.findById(req.params.ticketId);
 
     if (!ticket) {
         return next(new CommonError(404, "Ticket not found"));

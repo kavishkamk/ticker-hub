@@ -7,9 +7,9 @@ const createTicket = () => {
         .post("/api/tickets")
         .set("Cookie", global.signin())
         .send({
-            ticket: "ticket",
+            title: "ticket",
             price: 10
-        });
+        }).expect(201);
 };
 
 it("can fetch a list of a tickets", async () => {

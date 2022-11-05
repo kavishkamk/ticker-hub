@@ -16,7 +16,9 @@ stan.on("connect", () => {
     });
 
     const opts = stan.subscriptionOptions()
-        .setManualAckMode(true);
+        .setManualAckMode(true)
+        .setDeliverAllAvailable()
+        .setDurableName("sample-service");
 
     const subscription = stan.subscribe("ticket:created", "lisnter-queue-group", opts);
 

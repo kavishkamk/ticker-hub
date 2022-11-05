@@ -11,3 +11,4 @@
 - setup publisher and listner services
 - setup queue groups for scale services
 - set manual ack mood for avoid missing events
+- Tust durable subscription

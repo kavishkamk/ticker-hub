@@ -7,3 +7,9 @@ export * from "./middleware/error-middleware";
 export * from "./middleware/require-auth";
 export * from "./middleware/unhandled-route-middleware";
 export * from "./middleware/validate-request";
+
+export * from "./events/Subjects";
+export * from "./events/base-listener";
+export * from "./events/base-publisher";
+export * from "./events/ticket-created-event";
+export * from "./events/ticket-updated-event";

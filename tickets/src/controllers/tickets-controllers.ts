@@ -1,7 +1,10 @@
 import { CommonError } from "@tickethub-kv/common";
 import { NextFunction, Request, Response } from "express";
 
+import { TicketCreatedPublisher } from "../events/publishers/ticket-created-publisher";
+import { TicketUpdatedPublisher } from "../events/publishers/ticket-updated-publisher";
 import { Ticket } from "../models/Ticket";
+import { natsWrapper } from "../nats-wrapper";
 
 const getTickets = async (req: Request, res: Response, next: NextFunction) => {
 
@@ -31,7 +34,14 @@ const createTicket = async (req: Request, res: Response, next: NextFunction) => 
         await ticket.save();
     } catch (err) {
         return next(new CommonError(500, "Ticket creation fail"));
-    }
+    };
+
+    await new TicketCreatedPublisher(natsWrapper.client).publish({
+        id: ticket.id,
+        title: ticket.title,
+        price: ticket.price,
+        userId: ticket.userId
+    });
 
     res.status(201)
         .send({ ticket: ticket.toObject({ getters: true }) });
@@ -74,7 +84,14 @@ const updateTicket = async (req: Request, res: Response, next: NextFunction) => 
         await ticket.save();
     } catch (err) {
         return next(new CommonError(500, "Error occured during ticket update"));
-    }
+    };
+
+    await new TicketUpdatedPublisher(natsWrapper.client).publish({
+        id: ticket.id,
+        title: ticket.title,
+        price: ticket.price,
+        userId: ticket.userId
+    });
 
     res.status(200).send({ ticket: ticket.toObject({ getters: true }) });
 

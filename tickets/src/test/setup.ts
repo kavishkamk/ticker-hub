@@ -8,6 +8,8 @@ declare global {
     var signin: () => string[];
 };
 
+jest.mock("../nats-wrapper");
+
 let mongoServer: MongoMemoryServer;
 
 beforeAll(async () => {

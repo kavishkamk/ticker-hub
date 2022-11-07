@@ -14,17 +14,21 @@ export abstract class publisher<T extends Event> {
     constructor(private client: Stan) { }
 
     publish(data: T["data"]) {
-        this.client.publish(
-            this.subject,
-            JSON.stringify(data),
-            (err, guide) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log("published message with guide " + guide);
-                };
-            }
-        );
+        return new Promise<void>((resolve, reject) => {
+            this.client.publish(
+                this.subject,
+                JSON.stringify(data),
+                (err, guide) => {
+                    if (err) {
+                        console.log(err);
+                        reject(err);
+                    } else {
+                        console.log("published message with guide " + guide);
+                        resolve();
+                    };
+                }
+            );
+        });
     };
 
 }

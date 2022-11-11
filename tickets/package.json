@@ -17,7 +17,7 @@
   "author": "io.github.kavishkamk",
   "license": "ISC",
   "dependencies": {
-    "@tickethub-kv/common": "^1.0.8",
+    "@tickethub-kv/common": "^1.0.9",
     "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.14",
     "cookie-session": "^2.0.0",

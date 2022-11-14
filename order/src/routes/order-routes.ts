@@ -10,11 +10,11 @@ import { getOrders } from "../controllers/get-orders-controller";
 
 const router = Router();
 
-router.get("/", getOrders);
+router.use(requireAuth);
 
 router.get("/:id", getOrder);
 
-router.use(requireAuth);
+router.get("/", getOrders);
 
 router.post(
     "/",
@@ -30,6 +30,6 @@ router.post(
     createOrder
 );
 
-router.delete(":id", deleteOrder);
+router.delete("/:id", deleteOrder);
 
 export default router;

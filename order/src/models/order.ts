@@ -53,4 +53,4 @@ orderSchema.statics.build = (attrs: IOrder) => {
 
 const Order = model<OrderDoc, OrderModel>("Order", orderSchema);
 
-export { Order };
+export { Order, OrderStatus };

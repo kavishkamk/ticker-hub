@@ -1,8 +1,10 @@
 import { CommonError, OrderStatus } from "@tickethub-kv/common";
 import { Response, Request, NextFunction } from "express";
+import { OrderCreatedPublisher } from "../events/publisher/OrderCreatedPublisher";
 
 import { Order } from "../models/order";
 import { Ticket } from "../models/ticket";
+import { natsWrapper } from "../nats-wrapper";
 
 const EXPIRATION_WINDOW_SECOND = 15 * 60;
 
@@ -42,6 +44,17 @@ const createOrder = async (req: Request, res: Response, next: NextFunction) => {
     } catch (err) {
         return next(new CommonError(500, "Unknown Error. Please try again later"));
     };
+
+    new OrderCreatedPublisher(natsWrapper.client).publish({
+        id: order.id,
+        status: order.status,
+        userId: order.userId,
+        expiresAt: order.expiresAt.toISOString(),
+        ticket: {
+            id: order.ticket.id,
+            price: order.ticket.price
+        }
+    });
 
     res.status(201).json({ order });
 };

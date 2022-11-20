@@ -2,13 +2,15 @@ import { Response, Request, NextFunction } from "express";
 import { CommonError } from "@tickethub-kv/common";
 
 import { Order, OrderStatus } from "../models/order";
+import { OrderCancelledPublisher } from "../events/publisher/OrderCancelledPublisher";
+import { natsWrapper } from "../nats-wrapper";
 
 const deleteOrder = async (req: Request, res: Response, next: NextFunction) => {
 
     let order;
 
     try {
-        order = await Order.findById(req.params.id).exec();
+        order = await Order.findById(req.params.id).populate("ticket").exec();
     } catch (err) {
         return next(new CommonError(500, "Internal Server error"));
     };
@@ -28,6 +30,13 @@ const deleteOrder = async (req: Request, res: Response, next: NextFunction) => {
     } catch (err) {
         return next(new CommonError(500, "Internal Server error"));
     };
+
+    new OrderCancelledPublisher(natsWrapper.client).publish({
+        id: order.id,
+        ticket: {
+            id: order.ticket.id,
+        }
+    });
 
     res.status(200)
         .json(order);

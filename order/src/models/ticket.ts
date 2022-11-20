@@ -5,6 +5,7 @@ import { Order, OrderStatus } from "./order";
 // an interface that describe the properties
 // want to create ticket
 interface ITicket {
+    id: string;
     title: string;
     price: number;
 };
@@ -38,7 +39,11 @@ const ticketSchema = new Schema({
 
 // set statics method to build
 ticketSchema.statics.build = (attrs: ITicket) => {
-    return new Ticket(attrs);
+    return new Ticket({
+        _id: attrs.id,
+        title: attrs.title,
+        price: attrs.price
+    });
 };
 
 // find the ticket is reserved or not

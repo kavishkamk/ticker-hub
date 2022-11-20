@@ -49,10 +49,11 @@ const createOrder = async (req: Request, res: Response, next: NextFunction) => {
         id: order.id,
         status: order.status,
         userId: order.userId,
+        version: order.version,
         expiresAt: order.expiresAt.toISOString(),
         ticket: {
             id: order.ticket.id,
-            price: order.ticket.price
+            price: order.ticket.price,
         }
     });
 

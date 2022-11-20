@@ -19,6 +19,7 @@ interface OrderDoc extends Document {
     status: OrderStatus;
     expiresAt: Date;
     ticket: TicketDoc;
+    version: number;
 };
 
 // a interface that describe the properties

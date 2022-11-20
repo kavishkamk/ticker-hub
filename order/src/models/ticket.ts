@@ -1,4 +1,5 @@
 import { Document, model, Model, Schema } from "mongoose";
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 import { Order, OrderStatus } from "./order";
 
@@ -16,6 +17,7 @@ interface TicketDoc extends Document {
     title: string;
     price: number;
     isReserved(): Promise<boolean>;
+    version: number;
 };
 
 // an interface that describe the propertice
@@ -36,6 +38,9 @@ const ticketSchema = new Schema({
         min: [0, "price should be > 0"]
     }
 });
+
+ticketSchema.set("versionKey", "version");
+ticketSchema.plugin(updateIfCurrentPlugin);
 
 // set statics method to build
 ticketSchema.statics.build = (attrs: ITicket) => {

@@ -5,7 +5,7 @@ import { Ticket } from "../../models/ticket";
 import { QueueGroupName } from "./queue-group-names";
 
 export class TicketCreatedListner extends Listener<TicketCreatedEvent> {
-    subjectName: Subjects.TicketCreated = Subjects.TicketCreated;
+    subject: Subjects.TicketCreated = Subjects.TicketCreated;
     queueGroupName = QueueGroupName;
 
     async onMessage(data: TicketCreatedEvent['data'], msg: Message) {

@@ -40,7 +40,8 @@ const createTicket = async (req: Request, res: Response, next: NextFunction) => 
         id: ticket.id,
         title: ticket.title,
         price: ticket.price,
-        userId: ticket.userId
+        userId: ticket.userId,
+        version: ticket.version
     });
 
     res.status(201)
@@ -90,7 +91,8 @@ const updateTicket = async (req: Request, res: Response, next: NextFunction) => 
         id: ticket.id,
         title: ticket.title,
         price: ticket.price,
-        userId: ticket.userId
+        userId: ticket.userId,
+        version: ticket.version
     });
 
     res.status(200).send({ ticket: ticket.toObject({ getters: true }) });

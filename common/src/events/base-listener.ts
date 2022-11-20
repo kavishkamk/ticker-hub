@@ -10,7 +10,7 @@ interface Event {
 export abstract class Listener<T extends Event> {
 
     abstract queueGroupName: string;
-    abstract subjectName: T["subject"];
+    abstract subject: T["subject"];
     abstract onMessage(data: T['data'], msg: Message): void;
     protected ackWait = 5 * 1000;
 
@@ -27,14 +27,14 @@ export abstract class Listener<T extends Event> {
 
     listen() {
         const subscription = this.client.subscribe(
-            this.subjectName,
+            this.subject,
             this.queueGroupName,
             this.subscriptionOptions()
         );
 
         subscription.on("message", (msg: Message) => {
             console.log(
-                `Message Reserved : ${this.subjectName} / ${this.queueGroupName}`
+                `Message Reserved : ${this.subject} / ${this.queueGroupName}`
             );
 
             const parsedData = this.parseMessage(msg);

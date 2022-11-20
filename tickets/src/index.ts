@@ -32,6 +32,15 @@ const start = () => {
     // connect to the nats-streaming-server
     natsWrapper.connect(process.env.NATS_CLUSTER_ID, process.env.NATS_CLIENT_ID, process.env.NATS_URL)
         .then(() => {
+            // gracefull shout down
+            natsWrapper.client.on("close", () => {
+                console.log("NATS connection closed");
+                process.exit();
+            });
+
+            process.on("SIGTERM", () => natsWrapper.client.close());
+            process.on("SIGINT", () => natsWrapper.client.close());
+
             // connect to db
             mongoose.connect(process.env.MONGO_URI!)
                 .then(() => {
@@ -48,14 +57,6 @@ const start = () => {
             console.error("Could not connect to the NATS Streaming Server : " + err);
         });
 
-    // gracefull shout down
-    natsWrapper.client.on("close", () => {
-        console.log("NATS connection closed");
-        process.exit();
-    });
-
-    process.on("SIGTERM", () => natsWrapper.client.close());
-    process.on("SIGINT", () => natsWrapper.client.close());
 };
 
 start();

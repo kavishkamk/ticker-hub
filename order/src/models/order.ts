@@ -1,5 +1,6 @@
 import { OrderStatus } from "@tickethub-kv/common";
 import { Document, model, Model, Schema } from "mongoose";
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 import { TicketDoc } from "./ticket";
 
@@ -47,6 +48,17 @@ const orderSchema = new Schema({
         ref: 'Ticket'
     }
 });
+
+orderSchema.set("versionKey", "version");
+orderSchema.plugin(updateIfCurrentPlugin);
+
+// orderSchema.pre("save", function (done) {
+//     this.$where = {
+//         version: this.get("version") - 1
+//     };
+
+//     done();
+// });
 
 orderSchema.statics.build = (attrs: IOrder) => {
     return new Order(attrs);

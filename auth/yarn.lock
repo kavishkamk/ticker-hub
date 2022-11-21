@@ -579,10 +579,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@tickethub-kv/common@^1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@tickethub-kv/common/-/common-1.0.11.tgz#725c69a0e0bcdca2b84c6eda6cc65d8b306d6b99"
-  integrity sha512-TDgXb/ii5602ZEHKMiuYQoPwr+AtBiCuVy6ooMDP0YDae1ay78WaYG73qmNirY6mBj8ZrrR/fGlmOHUX2gDdjg==
+"@tickethub-kv/common@^1.0.15":
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/@tickethub-kv/common/-/common-1.0.15.tgz#aaca888e8d6420293e431098e1f6e1e7cbd7ff79"
+  integrity sha512-9fhB8Dj2CtYcQ9KBUXf13Wox1/4TrwApsk/aVAuwAiGFzf+ea1idKUCJZr2cBq/+k+2zL6T7yd+kJgOgtjmMGw==
   dependencies:
     "@types/cookie-session" "^2.0.44"
     "@types/express" "^4.17.14"

@@ -23,7 +23,8 @@ interface TicketDoc extends Document {
 // an interface that describe the propertice
 // ticket modle has
 interface TicketModel extends Model<TicketDoc> {
-    build: (attrs: ITicket) => TicketDoc;
+    build(attrs: ITicket): TicketDoc;
+    findByEvent(event: { id: string, version: number }): Promise<TicketDoc | null>;
 };
 
 // schema of the ticket
@@ -40,7 +41,23 @@ const ticketSchema = new Schema({
 });
 
 ticketSchema.set("versionKey", "version");
-ticketSchema.plugin(updateIfCurrentPlugin);
+// ticketSchema.plugin(updateIfCurrentPlugin);
+
+ticketSchema.pre("save", function (done) {
+    // @ts-ignores
+    this.$where = {
+        version: this.get("version") - 1
+    };
+
+    done();
+});
+
+ticketSchema.statics.build = (event: { id: string, version: number }) => {
+    return Ticket.findOne({
+        _id: event.id,
+        version: event.version - 1
+    });
+};
 
 // set statics method to build
 ticketSchema.statics.build = (attrs: ITicket) => {

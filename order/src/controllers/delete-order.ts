@@ -24,15 +24,20 @@ const deleteOrder = async (req: Request, res: Response, next: NextFunction) => {
     };
 
     order.status = OrderStatus.Cancelled;
+    console.log(order);
 
     try {
         order = await order.save();
+        console.log("................")
     } catch (err) {
+        console.log("................................dfdf")
+        console.log(err)
         return next(new CommonError(500, "Internal Server error"));
     };
 
     new OrderCancelledPublisher(natsWrapper.client).publish({
         id: order.id,
+        version: order.version,
         ticket: {
             id: order.ticket.id,
         }

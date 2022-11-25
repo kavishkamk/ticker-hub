@@ -72,6 +72,10 @@ const updateTicket = async (req: Request, res: Response, next: NextFunction) => 
         return next(new CommonError(404, "Ticket not found"));
     };
 
+    if (ticket.orderId) {
+        throw new CommonError(400, "cannn't edit reserved ticket");
+    };
+
     if (ticket.userId !== req.currentUser!.id) {
         return next(new CommonError(401, "Not Autherized"));
     };

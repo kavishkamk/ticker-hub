@@ -2,6 +2,8 @@ import { CommonError } from "@tickethub-kv/common";
 import mongoose from "mongoose";
 
 import { app } from "./app";
+import { OrderCancelledListener } from "./events/listeners/order-cancelled-listener";
+import { OrderCreatedListener } from "./events/listeners/order-created-listener";
 import { natsWrapper } from "./nats-wrapper";
 
 const port = 4000;
@@ -40,6 +42,9 @@ const start = () => {
 
             process.on("SIGTERM", () => natsWrapper.client.close());
             process.on("SIGINT", () => natsWrapper.client.close());
+
+            new OrderCreatedListener(natsWrapper.client).listen();
+            new OrderCancelledListener(natsWrapper.client).listen();
 
             // connect to db
             mongoose.connect(process.env.MONGO_URI!)

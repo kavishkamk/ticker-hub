@@ -23,12 +23,14 @@ interface TicketDoc extends Document {
     userId: string;
     createdAt: Date;
     version: number;
+    orderId?: string;
 };
 
 const ticketSchema = new Schema({
     title: { type: String, require: [true, "title required"] },
     price: { type: Number, min: [0, "Price should be grater than 0"], require: [true, "Price required"] },
-    userId: { type: String, require: [true, "user Id required"] }
+    userId: { type: String, require: [true, "user Id required"] },
+    orderId: { type: String }
 }, {
     timestamps: true
 });

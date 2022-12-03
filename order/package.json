@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tickethub-kv/common": "^1.0.17",
+    "@tickethub-kv/common": "^1.0.18",
     "@types/express": "^4.17.14",
     "add": "^2.0.6",
     "cookie-session": "^2.0.0",

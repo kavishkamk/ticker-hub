@@ -1,4 +1,5 @@
 import { CommonError } from "@tickethub-kv/common";
+import { OrderCreatedListener } from "./events/listeners/order-created-listener";
 
 import { natsWrapper } from "./nats-wrapper";
 
@@ -16,6 +17,10 @@ const startService = () => {
         throw new CommonError(404, "NATS_CLUSTER_ID must be defined");
     }
 
+    if (!process.env.REDIS_HOST) {
+        throw new CommonError(404, "REDIS_HOST must be defined");
+    }
+
     // connect to the nats-streaming-server
     natsWrapper.connect(process.env.NATS_CLUSTER_ID, process.env.NATS_CLIENT_ID, process.env.NATS_URL)
         .then(() => {
@@ -28,6 +33,8 @@ const startService = () => {
 
             process.on("SIGTERM", () => natsWrapper.client.close());
             process.on("SIGINT", () => natsWrapper.client.close());
+
+            new OrderCreatedListener(natsWrapper.client).listen();
         })
         .catch((err) => {
             console.error("Could not connect to the NATS Streaming Server : " + err);

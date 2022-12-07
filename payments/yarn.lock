@@ -1309,10 +1309,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@tickethub-kv/common@^1.0.17":
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/@tickethub-kv/common/-/common-1.0.18.tgz#67402309ddcc16e84831f6ea34808f8c6cb0a9a9"
-  integrity sha512-oYmyBdCr44VTZXSzDm9duxf1UwmiHl/ipU8sn9LV5/qorYi6xVnn9OIUi1XKR65D5mtyo+HPTxH1YjClL9fCcg==
+"@tickethub-kv/common@^1.0.19":
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/@tickethub-kv/common/-/common-1.0.19.tgz#267ecb4092004ed0d5f298e10101ec9e06f03c19"
+  integrity sha512-254WM/2FDcD7A5dEy2ZqOE/6TfIZ8mA3zLW0VO+mbDi4zGi/qMdrHuRT41G0mf81oGHYH7AGkwH8mVfJpabprg==
   dependencies:
     "@types/cookie-session" "^2.0.44"
     "@types/express" "^4.17.14"
@@ -1486,6 +1486,11 @@
   version "18.11.10"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.10.tgz#4c64759f3c2343b7e6c4b9caf761c7a3a05cee34"
   integrity sha512-juG3RWMBOqcOuXC643OAdSA525V44cVgGV6dUDuiFtss+8Fk5x1hI93Rsld43VeJVIeqlP9I7Fn9/qaVqoEAuQ==
+
+"@types/node@>=8.1.0":
+  version "18.11.11"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.11.tgz#1d455ac0211549a8409d3cdb371cd55cc971e8dc"
+  integrity sha512-KJ021B1nlQUBLopzZmPBVuGU9un7WJd/W4ya7Ih02B4Uwky5Nja0yGYav2EfYIk0RR2Q9oVhf60S2XR1BCWJ2g==
 
 "@types/prettier@^2.1.5":
   version "2.7.1"
@@ -3927,6 +3932,14 @@ strip-json-comments@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
+
+stripe@^11.2.0:
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-11.2.0.tgz#4a7c4fe70e7e17451e0e86b4c0716b2ef14147cb"
+  integrity sha512-La60wsPOmJI7H9knAkwrkYo5d6psg4csGX+Q1UDUZqNIYpvoxFa/d2xYPNiLdpk5pqH08kp2ll7AfiHoEw8Wxg==
+  dependencies:
+    "@types/node" ">=8.1.0"
+    qs "^6.11.0"
 
 strnum@^1.0.5:
   version "1.0.5"

@@ -2,6 +2,7 @@ import express from "express";
 import { json } from "body-parser";
 import cookieSession from "cookie-session";
 import { currentUserMiddleware, errorMiddleware, requireAuth, unhandledRouteMiddleWare } from "@tickethub-kv/common";
+import { paymentRouter } from "./routes/payment-routes";
 
 const app = express();
 
@@ -16,6 +17,8 @@ app.use(cookieSession({
 }));
 
 app.use(currentUserMiddleware);
+
+app.use("/api/payments", paymentRouter);
 
 app.use(unhandledRouteMiddleWare);
 

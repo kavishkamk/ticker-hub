@@ -2,6 +2,8 @@ import { CommonError } from "@tickethub-kv/common";
 import mongoose from "mongoose";
 
 import { app } from "./app";
+import { OrderCancelledListeners } from "./events/listeners/order-cancelled-listeners";
+import { OrderCreatedListeners } from "./events/listeners/order-created-listeners";
 import { natsWrapper } from "./nats-wrapper";
 
 const port = 4000;
@@ -29,6 +31,10 @@ const start = () => {
         throw new CommonError(404, "NATS_CLUSTER_ID must be defined");
     }
 
+    if (!process.env.STRIPE_KEY) {
+        throw new CommonError(404, "STRIPE_KEY must be defined");
+    }
+
     // connect to the nats-streaming-server
     natsWrapper.connect(process.env.NATS_CLUSTER_ID, process.env.NATS_CLIENT_ID, process.env.NATS_URL)
         .then(() => {
@@ -40,6 +46,9 @@ const start = () => {
 
             process.on("SIGTERM", () => natsWrapper.client.close());
             process.on("SIGINT", () => natsWrapper.client.close());
+
+            new OrderCreatedListeners(natsWrapper.client).listen();
+            new OrderCancelledListeners(natsWrapper.client).listen();
 
             // connect to db
             mongoose.connect(process.env.MONGO_URI!)

@@ -63,6 +63,8 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=["Value"]
 - use [mongo](https://hub.docker.com/_/mongo) image from [docker hub]((https://hub.docker.com/search?q=)) to impliment mongodb
 - [ Skaffold ](https://skaffold.dev/) for automate development process [ (./skaffold.yaml) ](https://github.com/kavishkamk/ticket-hub/blob/main/skaffold.yaml)
 - hodted in Google Cloud (use Google Kubernetes Engine, Cloud Builder, Load balancing deployed with Ingress-Nginx)
+- [Bull.js](https://optimalbits.github.io/bull/) and [Redis](https://redis.io/) for set expiration alerts
+- [Stripe.js](https://stripe.com/) for payments handling
 - create and publish shared library ([@tickethub-kv/common](https://www.npmjs.com/package/@tickethub-kv/common))
     ```
     yarn add @tickethub-kv/common

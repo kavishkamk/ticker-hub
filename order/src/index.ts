@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 
 import { app } from "./app";
 import { ExpirationCompleteListener } from "./events/listner/expiration-complete-listener";
+import { PaymentCreatedListner } from "./events/listner/payment-created-listener";
 import { TicketCreatedListner } from "./events/listner/ticket-created-listner";
 import { TicketUpdatedListener } from "./events/listner/ticket-updated-listener";
 import { natsWrapper } from "./nats-wrapper";
@@ -44,6 +45,7 @@ const start = () => {
             new TicketCreatedListner(natsWrapper.client).listen();
             new TicketUpdatedListener(natsWrapper.client).listen();
             new ExpirationCompleteListener(natsWrapper.client).listen();
+            new PaymentCreatedListner(natsWrapper.client).listen();
 
             process.on("SIGTERM", () => natsWrapper.client.close());
             process.on("SIGINT", () => natsWrapper.client.close());

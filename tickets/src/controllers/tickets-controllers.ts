@@ -11,7 +11,7 @@ const getTickets = async (req: Request, res: Response, next: NextFunction) => {
     let tickets;
 
     try {
-        tickets = await Ticket.find({});
+        tickets = await Ticket.find({ orderId: undefined });
     } catch (error) {
         return next(new CommonError(500, "Error occured during tickets searching"));
     };

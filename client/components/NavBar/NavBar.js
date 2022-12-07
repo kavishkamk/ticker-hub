@@ -10,6 +10,8 @@ const NavBar = ({ currentUser }) => {
                 <div className="flex ml-auto">
                     {!currentUser && <Button href="/auth/signup" title="SignUp" />}
                     {!currentUser && <Button href="/auth/signin" title="SignIn" />}
+                    {currentUser && <Button href="/tickets/new" title="Sell Tickets" />}
+                    {currentUser && <Button href="/orders" title="My Orders" />}
                     {currentUser && <Button href="/auth/signout" title="SignOut" />}
                 </div>
             </div>

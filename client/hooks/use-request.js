@@ -5,8 +5,8 @@ const useRequest = () => {
 
     const [error, setError] = useState(null);
 
-    const sendRequest = async ({ url, method, body, onSuccess }) => {
-        await axios[method](url, body)
+    const sendRequest = async ({ url, method, body, onSuccess }, props = {}) => {
+        await axios[method](url, { ...body, ...props })
             .then(respone => {
                 setError(null);
 

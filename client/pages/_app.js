@@ -8,19 +8,20 @@ const App = ({ Component, pageProps, currentUser }) => {
     return (
         <div>
             <NavBar currentUser={currentUser} />
-            <Component {...pageProps} />;
+            <Component currentUser={currentUser} {...pageProps} />;
         </div>
     );
 };
 
 App.getInitialProps = async (appContext) => {
 
-    const { data } = await buildClient(appContext.ctx).get("/api/users/currentuser");
+    const client = buildClient(appContext.ctx);
+    const { data } = await client.get("/api/users/currentuser");
 
     let pageProps = {};
 
     if (appContext.Component.getInitialProps) {
-        pageProps = await appContext.Component.getInitialProps(appContext.ctx);
+        pageProps = await appContext.Component.getInitialProps(appContext.ctx, client, data.currentUser);
     }
     console.log(pageProps);
     return {

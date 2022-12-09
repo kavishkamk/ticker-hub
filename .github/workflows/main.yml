@@ -1,8 +1,8 @@
-name: test-auth
+name: test-order
 on:
   pull_request:
     paths:
-      - 'auth/**'
+      - 'order/**'
 jobs:
   build:
     runs-on: ubuntu-latest

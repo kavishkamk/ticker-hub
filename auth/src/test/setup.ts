@@ -30,6 +30,7 @@ beforeEach(async () => {
 
 afterAll(async () => {
     await mongod.stop();
+    mongoose.connection.close();
 });
 
 global.getCookie = async () => {

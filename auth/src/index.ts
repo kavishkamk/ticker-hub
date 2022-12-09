@@ -17,7 +17,7 @@ const start = () => {
 
     mongoose.connect(process.env.MONGO_URI)
         .then(() => {
-            console.log("Connected to the database");
+            console.log("Connected to the mongo database");
 
             app.listen(port, () => {
                 console.log("server listen on port : " + port);
